@@ -9,7 +9,7 @@ async function crwal(data) {
         await driver.get('http://map.naver.com/v5/');
         await sleep(3000);
         await driver.findElement(By.css('input.input_search')).sendKeys(i.korCor + '역', Key.RETURN);
-        await driver.manage().window().setRect({ width: 1220, height: 1400 })
+        await driver.manage().window().setRect({ width: 1200, height: 1400 })
 
         try {
             for(var j = 0; j < 20; j++) {
@@ -36,9 +36,11 @@ async function crwal(data) {
                 await fs.writeFileSync(`image.png`, encodedString, 'base64');
 
                 await driver.findElement(By.css("body > app > layout > div.map_container.fold.panorama > panorama-layout > div > button")).click()
+
             }
         } catch (e) { 
             if (e instanceof RangeError) {return null;}
+            
         }
     }
 }

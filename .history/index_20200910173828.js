@@ -3,8 +3,8 @@ const csv = require('csv-parser')
 const fs = require('fs');
 const path = require("path");
 
-let dirNow = path.dirname(require.main.filename);
-let csvData = [];
+var dirNow = path.dirname(require.main.filename);
+var csvData = [];
 
 fs.createReadStream(dirNow + "/PseoulStation.csv")
   .pipe(csv())

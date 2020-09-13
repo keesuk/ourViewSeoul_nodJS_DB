@@ -1,6 +1,11 @@
 const image = require('get-image-data');
 const fs = require('fs');
-const worker = require('./worker')
+const path = require("path");
+const csv = require("fast-csv");
+const worker = require('./worker');
+
+var dirNow = path.dirname(require.main.filename);
+var ws = fs.createWriteStream(dirNow + "/points.csv");
 
 function algo(){
     image('./image.png', function (err, img) {
@@ -12,6 +17,8 @@ function algo(){
         const n = Math.round(width*height / 40)
 
         const points = worker({data, width, height, n})
+
+        csv.write(points, {headers:true}).pipe(ws);
         
       })
 }

@@ -10,8 +10,11 @@
   "description": "",
   "dependencies": {
     "csv-parser": "^2.3.3",
+    "d3-delaunay": "^5.3.0",
     "fast-csv": "^4.3.2",
     "fs": "0.0.1-security",
+    "get-image-data": "^5.0.0",
+    "jimp": "^0.16.1",
     "path": "^0.12.7",
     "selenium-webdriver": "^4.0.0-alpha.7"
   }

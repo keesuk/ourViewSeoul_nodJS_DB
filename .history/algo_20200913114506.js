@@ -1,0 +1,23 @@
+const image = require('get-image-data');
+const fs = require('fs');
+
+function algo(){
+    image('./image.png', function (err, img) {
+        var height = img.height
+        var width = img.width
+        console.log(height)
+        console.log(width)
+        console.log(img.data)
+
+        var {data: rgba} = img.data
+        console.log({data: rgba})
+        var data = new Float64Array(width * height)
+
+        for (let i = 0, n = rgba.length / 4; i < n; ++i) {
+          data[i] = Math.max(0, 1 - rgba[i * 4] / 200)
+        }
+      })      
+}
+algo();
+
+module.exports = algo;

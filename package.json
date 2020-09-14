@@ -11,6 +11,7 @@
   "dependencies": {
     "csv-parser": "^2.3.3",
     "d3-delaunay": "^5.3.0",
+    "express": "^4.17.1",
     "fast-csv": "^4.3.2",
     "fs": "0.0.1-security",
     "get-image-data": "^5.0.0",

@@ -1,27 +1,30 @@
 const { Builder, By, Key } = require('selenium-webdriver');
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 const makeImg = require('./makeImg');
+const makeJsonStation = require('./makeJsonStation');
 const fs = require('fs');
 const path = require("path");
-
+                
 
 async function crwal(data) {
     let driver = new Builder().forBrowser('chrome').build();
 
-    for(let i of data) {
-        let stationName = i.engCor;
-        let dir = path.dirname(require.main.filename) + '/src/image/' + stationName;
+    for(let i = 0; i < data.length; i++) {
+        let stationEng = data[i].engCor;
+        let stationKor = data[i].korCor;
+        makeJsonStation(stationEng);
+        let dir = path.dirname(require.main.filename) + '/src/image/' + stationEng;
 
         await driver.get('http://map.naver.com/v5/');
         await sleep(3000);
-        await driver.findElement(By.css('input.input_search')).sendKeys(i.korCor + '역', Key.RETURN);
+        await driver.findElement(By.css('input.input_search')).sendKeys(stationKor + '역', Key.RETURN);
         await driver.manage().window().setRect({ width: 500, height: 773 })
         if (!fs.existsSync(dir)){
             await fs.mkdirSync(dir);
         };
 
         try {
-            for(let j = 0; j < 20; j++) {
+            for(let j = 0; j < 10; j++) {
                 await sleep(2000);
                 const iframe = await driver.findElement(By.id('searchIframe'));
                 await driver.switchTo().frame(iframe);
@@ -46,7 +49,7 @@ async function crwal(data) {
 
                 await fs.writeFileSync( fileName, encodedString, 'base64');
                 await driver.findElement(By.css("body > app > layout > div.map_container.fold.panorama > panorama-layout > div > button")).click()
-                await makeImg({stationName, fileName, imgName, imgTag});
+                await makeImg({stationEng, fileName, imgName, imgTag});
             }
         } catch (e) { 
             if (e instanceof RangeError) {return null;}

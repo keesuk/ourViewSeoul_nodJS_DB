@@ -1,6 +1,6 @@
 const { Delaunay } = require('d3-delaunay')
 
-function worker({data, width, height, n}) {
+function worker({ data, width, height, n }) {
   const points = new Float64Array(n * 2);
   const c = new Float64Array(n * 2);
   const s = new Float64Array(n);

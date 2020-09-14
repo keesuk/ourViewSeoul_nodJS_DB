@@ -1,0 +1,10 @@
+{
+   "station": [
+      {
+         "location": "stationName",
+         "locationName": "imgName",
+         "locationTag": "imgTag",
+         "locationData": "points"
+      }
+   ]
+}

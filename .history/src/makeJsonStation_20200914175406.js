@@ -1,0 +1,27 @@
+const fs = require('fs');
+
+function makeJsonStation(stationEng) {
+
+    function saveJSON(filename = '', json = '""') {
+        return fs.writeFile(
+            filename, 
+            JSON.stringify(
+                json, 
+                null, 
+                3
+            ))
+    }
+
+    // const seoul = loadJSON('./src/data/seoul.json')
+    let obj = {[stationEng]: [] }
+    obj[stationEng].push({
+        "location" : "stationEng",
+        "lcoationName" : "imgName",
+        "locationTag" : "imgTag",
+        "locationData" : "pointsArr"
+    })
+    let json = JSON.stringify(obj)
+    saveJSON('./src/data/seoul.json', json)
+}
+
+module.exports = makeJsonStation;

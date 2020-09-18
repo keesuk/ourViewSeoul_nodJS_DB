@@ -9,9 +9,5 @@ app.get("/", (req, res) => res.send('hi'));
 app.listen(port, () => console.log(`example app listening on port ${port}`))
 
 const gc = new Storage({
-    keyFilename: path.join(__dirname, './station-db-1f582c6cf101.json'),
-    projectId: 'station-db'
-});
-
-const imageBucket = gc.bucket('station_image_data')
-gc.getBuckets(imageBucket).then(x => console.log(x))
+    keyFilename: path.join(__dirname, '../station-db-1f582c6cf101.json')
+})

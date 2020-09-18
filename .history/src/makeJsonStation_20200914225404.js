@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-function makeJson({stationEng, imgName, imgTag, points}) {
+function makeJsonStation(stationEng) {
 
     function loadJSON(filename = '') {
         return JSON.parse(
@@ -16,18 +16,18 @@ function makeJson({stationEng, imgName, imgTag, points}) {
             JSON.stringify(
                 json, 
                 null, 
-                2
+                3
             ))
     }
-
+    
     const seoul = loadJSON('./src/data/seoul.json')
-    seoul.list[stationEng].push({
-        "location" : stationEng,
-        "lcoationName" : imgName,
-        "locationTag" : imgTag,
-        "locationData" : Object.values(points)
+    obj.list[stationEng].push({
+        "location" : "stationEng",
+        "lcoationName" : "imgName",
+        "locationTag" : "imgTag",
+        "locationData" : "pointsArr"
     })
-    saveJSON('./src/data/seoul.json', seoul)
+    saveJSON('./src/data/seoul.json', obj)
 }
 
-module.exports = makeJson;
+module.exports = makeJsonStation;

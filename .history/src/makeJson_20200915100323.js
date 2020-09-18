@@ -16,7 +16,7 @@ function makeJson({stationEng, imgName, imgTag, points}) {
             JSON.stringify(
                 json, 
                 null, 
-                2
+                4
             ))
     }
 
@@ -25,7 +25,7 @@ function makeJson({stationEng, imgName, imgTag, points}) {
         "location" : stationEng,
         "lcoationName" : imgName,
         "locationTag" : imgTag,
-        "locationData" : Object.values(points)
+        "locationData" : [points]
     })
     saveJSON('./src/data/seoul.json', seoul)
 }

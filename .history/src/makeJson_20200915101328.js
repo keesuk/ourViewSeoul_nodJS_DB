@@ -14,9 +14,7 @@ function makeJson({stationEng, imgName, imgTag, points}) {
         return fs.writeFileSync(
             filename, 
             JSON.stringify(
-                json, 
-                null, 
-                2
+                json
             ))
     }
 

@@ -13,5 +13,4 @@ const gc = new Storage({
     projectId: 'station-db'
 });
 
-const imageBucket = gc.bucket('station_image_data')
-gc.getBuckets(imageBucket).then(x => console.log(x))
+gc.getBuckets().then(x => console.log(x))

@@ -16,7 +16,7 @@ function makeJson({stationEng, imgName, imgTag, points}) {
             JSON.stringify(
                 json, 
                 null, 
-                2
+                4
             ))
     }
 

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-function reWriteJson({stationKor, stationEng, imgName, imgTag, points}) {
+function reWriteJson({stationEng, imgName, imgTag, points}) {
 
     function loadJSON(filename = '') {
         return JSON.parse(
@@ -22,7 +22,6 @@ function reWriteJson({stationKor, stationEng, imgName, imgTag, points}) {
 
     const seoul = loadJSON('./src/data/'+ stationEng +'.json')
     seoul.list.push({
-        "station" : stationKor,
         "location" : stationEng,
         "locationName" : imgName,
         "locationTag" : imgTag,

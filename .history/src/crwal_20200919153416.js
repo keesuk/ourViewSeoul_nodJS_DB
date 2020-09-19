@@ -64,7 +64,7 @@ async function crwal(data) {
         } catch (e) { 
             if (e instanceof RangeError) {return null;}
         }
-        await uploadfile(stationEng);
+        // await uploadfile(stationEng);
     }
 }
 

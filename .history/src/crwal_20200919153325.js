@@ -59,12 +59,12 @@ async function crwal(data) {
                     await resizeOptimizeImages(options);
                 })();
                 await driver.findElement(By.css("body > app > layout > div.map_container.fold.panorama > panorama-layout > div > button")).click()
-                await makeImg({stationEng, fileName, imgName, imgTag});
+                // await makeImg({stationEng, fileName, imgName, imgTag});
             }
         } catch (e) { 
             if (e instanceof RangeError) {return null;}
         }
-        await uploadfile(stationEng);
+        // await uploadfile(stationEng);
     }
 }
 

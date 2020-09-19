@@ -1,8 +1,8 @@
 const { Builder, By, Key } = require('selenium-webdriver');
 const sleep = ms => new Promise(res => setTimeout(res, ms));
-const makeImg = require('./makeImg');
+// const makeImg = require('./makeImg');
 const createJson = require('./createJson');
-const uploadfile = require('./uploadFile');
+// const uploadfile = require('./uploadFile')
 const fs = require('fs');
 const path = require("path");
 const resizeOptimizeImages = require('resize-optimize-images');
@@ -54,17 +54,17 @@ async function crwal(data) {
                     const options = {
                         images: [fileName],
                         width: 500,
-                        quality: 100
+                        quality: 60
                     };
                     await resizeOptimizeImages(options);
                 })();
                 await driver.findElement(By.css("body > app > layout > div.map_container.fold.panorama > panorama-layout > div > button")).click()
-                await makeImg({stationEng, fileName, imgName, imgTag});
+                // await makeImg({stationEng, fileName, imgName, imgTag});
             }
         } catch (e) { 
             if (e instanceof RangeError) {return null;}
         }
-        await uploadfile(stationEng);
+        // await uploadfile(stationEng);
     }
 }
 

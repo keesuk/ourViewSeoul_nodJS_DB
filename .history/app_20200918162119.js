@@ -14,4 +14,11 @@ const gc = new Storage({
 });
 
 const imageBucket = gc.bucket('station_image_data')
-gc.getBuckets(imageBucket).then(x => console.log(x))
+gc.getBuckets(imageBucket).then(results => {
+    const bucket = results[0];
+
+    console.log('Buckets:');
+    buckets.forEach((bucket) => {
+        console.log(bucket.name);
+    });
+})

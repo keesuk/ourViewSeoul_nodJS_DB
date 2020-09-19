@@ -54,7 +54,7 @@ async function crwal(data) {
                     const options = {
                         images: [fileName],
                         width: 500,
-                        quality: 100
+                        quality: 60
                     };
                     await resizeOptimizeImages(options);
                 })();

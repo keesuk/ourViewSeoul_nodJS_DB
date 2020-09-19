@@ -1,5 +1,6 @@
 const image = require('get-image-data');
-const reWriteJson = require('./reWriteJson');
+const fs = require('fs');
+const makeJson = require('./reWriteJson');
 const worker = require('./worker');
 
 function makeImg({stationEng, fileName, imgName, imgTag}){
@@ -12,7 +13,7 @@ function makeImg({stationEng, fileName, imgName, imgTag}){
         const n = Math.round(width*height / 40)
         const points = worker({ data, width, height, n })
 
-        reWriteJson({stationEng, imgName, imgTag, points})
+        makeJson({stationEng, imgName, imgTag, points})
       })
 }
 

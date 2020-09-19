@@ -1,8 +1,8 @@
 const { Builder, By, Key } = require('selenium-webdriver');
 const sleep = ms => new Promise(res => setTimeout(res, ms));
-const makeImg = require('./makeImg');
+// const makeImg = require('./makeImg');
 const createJson = require('./createJson');
-const uploadfile = require('./uploadFile');
+// const uploadfile = require('./uploadFile')
 const fs = require('fs');
 const path = require("path");
 const resizeOptimizeImages = require('resize-optimize-images');
@@ -20,7 +20,7 @@ async function crwal(data) {
         await driver.get('http://map.naver.com/v5/');
         await sleep(3000);
         await driver.findElement(By.css('input.input_search')).sendKeys(stationKor + '역', Key.RETURN);
-        await driver.manage().window().setRect({ width: 1324, height: 1800 });
+        await driver.manage().window().setRect({ width: 500, height: 770 });
         if (!fs.existsSync(dir)){
             await fs.mkdirSync(dir);
         };
@@ -50,21 +50,21 @@ async function crwal(data) {
                 let encodedString = await image.takeScreenshot(true);
 
                 await fs.writeFileSync( fileName, encodedString, 'base64');
-                (async () => {
-                    const options = {
-                        images: [fileName],
-                        width: 500,
-                        quality: 100
-                    };
-                    await resizeOptimizeImages(options);
-                })();
+                // (async () => {
+                //     const options = {
+                //         images: [fileName],
+                //         width: 500,
+                //         quality: 60
+                //     };
+                //     await resizeOptimizeImages(options);
+                // })();
                 await driver.findElement(By.css("body > app > layout > div.map_container.fold.panorama > panorama-layout > div > button")).click()
-                await makeImg({stationEng, fileName, imgName, imgTag});
+                // await makeImg({stationEng, fileName, imgName, imgTag});
             }
         } catch (e) { 
             if (e instanceof RangeError) {return null;}
         }
-        await uploadfile(stationEng);
+        // await uploadfile(stationEng);
     }
 }
 

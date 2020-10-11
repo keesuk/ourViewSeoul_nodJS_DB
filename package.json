@@ -19,6 +19,8 @@
     "jimp": "^0.16.1",
     "path": "^0.12.7",
     "resize-optimize-images": "^1.1.2",
-    "selenium-webdriver": "^4.0.0-alpha.7"
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "svg-parser": "^2.0.4",
+    "svgson": "^4.1.0"
   }
 }

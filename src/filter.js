@@ -18,7 +18,7 @@ function filtering(filterData, imgTag, dirNow) {
             writer.end();
         })
         
-        return { id: '1' }
+        return { id: '0' }
     }
 }
 

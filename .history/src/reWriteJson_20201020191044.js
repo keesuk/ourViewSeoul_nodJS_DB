@@ -26,11 +26,10 @@ function reWriteJson({stationKor, stationEng, imgName, imgTag, imgTagID, points}
         "location" : stationEng,
         "locationName" : imgName,
         "locationTag" : imgTag,
-        "locationTagID" : imgTagID,
         "locationData" : Object.values(points)
     })
     saveJSON('./src/data/JSON/'+ stationEng +'.json', seoul)
-    console.log(`${stationEng}, ${imgName}, ${imgTag}, ${imgTagID} done`)
+    console.log(`${stationEng}, ${imgName}, ${imgTag}, ${imgTag} done`)
 }
 
 module.exports = reWriteJson;

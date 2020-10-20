@@ -12,6 +12,9 @@ const resizeOptimizeImages = require('resize-optimize-images');
 async function crwal(data) {
     let driver = new Builder().forBrowser('chrome').build();
 
+
+    let categories = await filter();
+
     for(let i = 0; i < data.length; i++) {
         let stationEng = data[i].engCor;
         let stationKor = data[i].korCor;
@@ -19,7 +22,7 @@ async function crwal(data) {
         let dir = path.dirname(require.main.filename) + '/src/data/image/' + stationEng;
 
         await driver.get('http://map.naver.com/v5/');
-        await sleep(4000);
+        await sleep(3000);
         await driver.findElement(By.css('input.input_search')).sendKeys(stationKor + '역', Key.RETURN);
         await driver.manage().window().setRect({ width: 1324, height: 1800 });
         if (!fs.existsSync(dir)){
@@ -36,9 +39,10 @@ async function crwal(data) {
                 let tag = await driver.findElements(By.css('span.WIDaC'));
                 let imgName = await name[j].getText();
                 let imgTag = await tag[j].getText();
-                let imgTagID = await filter(imgTag);
+                let imgTagID = await categories.find(x => x.category === imgTag).id
+                await console.log(imgTag, imgTagID)
 
-                let fileName = await dir + '/' + imgName + '_' + imgTag + '.png'
+                let fileName = dir + '/' + imgName + '_' + imgTag + '.png'
 
                 let span = await driver.findElements(By.css('span._3hFgU._1Z_6k'));
                 let button = await span[j].findElement(By.css('a._1jzhe'));

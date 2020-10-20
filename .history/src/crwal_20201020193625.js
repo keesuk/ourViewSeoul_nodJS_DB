@@ -38,7 +38,7 @@ async function crwal(data) {
                 let imgTag = await tag[j].getText();
                 let imgTagID = await filter(imgTag);
 
-                let fileName = await dir + '/' + imgName + '_' + imgTag + '.png'
+                let fileName = dir + '/' + imgName + '_' + imgTag + '.png'
 
                 let span = await driver.findElements(By.css('span._3hFgU._1Z_6k'));
                 let button = await span[j].findElement(By.css('a._1jzhe'));

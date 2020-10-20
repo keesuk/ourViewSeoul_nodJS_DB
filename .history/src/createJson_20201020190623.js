@@ -6,7 +6,7 @@ function creatJson(stationEng) {
     };
     let data = JSON.stringify(obj, null, 2);
 
-    fs.writeFile('./src/data/JSON/'+ stationEng +'.json', data, (err) => {
+    fs.writeFile('./src/data/JSON'+ stationEng +'.json', data, (err) => {
         if (err) throw err;
         console.log('Data written to file')
     })

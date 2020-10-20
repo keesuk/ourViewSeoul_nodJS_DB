@@ -1,32 +1,14 @@
 const csv = require('csv-parser')
 const fs = require('fs');
 const path = require("path");
-var csvWriter = require('csv-write-stream')
 
-
-function filtering(filterData, imgTag, dirNow) {
-
-    let writer = csvWriter()
-
-    let imgtag = filterData.find(x => x.category === imgTag)
-
-    if(imgtag !== undefined){return imgtag}
-    else { 
-        new Promise((resolve, reject) => {
-            writer.pipe(fs.createWriteStream(dirNow + "/src/data/seoulFilterTODO.csv", {flags: 'a'}))
-            writer.write({imgTag});
-            writer.end();
-        })
-        
-        return { id: '1' }
-    }
-}
 
 function filter(preImgTag){
 
     let dirNow = path.dirname(require.main.filename);
     let filterData = [];
     let imgTag = preImgTag.replace(/,/g, "");
+    console.log(imgTag)
 
     return new Promise((resolve, reject) => {
         let stream = fs.createReadStream(dirNow + "/src/data/seoulCategory.csv")
@@ -36,7 +18,7 @@ function filter(preImgTag){
             filterData.push(csvrow)
         })
         stream.on('end', function() {
-            let tag = filtering(filterData, imgTag, dirNow)
+            let tag = filterData.find(x => x.category === imgTag)
             let imgTagID = Number(tag.id)
             
             resolve(imgTagID)
@@ -45,5 +27,3 @@ function filter(preImgTag){
 }
 
 module.exports = filter;
-
-

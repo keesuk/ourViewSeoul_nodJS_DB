@@ -16,10 +16,13 @@ function filtering(filterData, imgTag, dirNow) {
             writer.pipe(fs.createWriteStream(dirNow + "/src/data/seoulFilterTODO.csv", {flags: 'a'}))
             writer.write({imgTag});
             writer.end();
+
         })
         
-        return { id: '1' }
+        return {id:1}
+
     }
+
 }
 
 function filter(preImgTag){
@@ -27,6 +30,7 @@ function filter(preImgTag){
     let dirNow = path.dirname(require.main.filename);
     let filterData = [];
     let imgTag = preImgTag.replace(/,/g, "");
+    console.log(imgTag)
 
     return new Promise((resolve, reject) => {
         let stream = fs.createReadStream(dirNow + "/src/data/seoulCategory.csv")
@@ -37,6 +41,8 @@ function filter(preImgTag){
         })
         stream.on('end', function() {
             let tag = filtering(filterData, imgTag, dirNow)
+
+            console.log(tag)
             let imgTagID = Number(tag.id)
             
             resolve(imgTagID)
